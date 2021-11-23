@@ -1,9 +1,9 @@
 "use strict";
+require('dotenv').config();
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+
 
 const User = require('../models/user');
 
@@ -42,17 +42,14 @@ exports.login = (req, res, next) => {
     res.status(200).json({ token: token });
   })
   .catch(err =>{
-    if (!err.statusCode) err.statusCode = 500;
-    res.status(err.statusCode).json({ message: err.message, statusCode: err.statusCode });
-  })
+    next(err);
+  });
 };
 
 exports.signup = (req, res, next) => {
-  const email = req.body.email;
-  const name = req.body.name;
-  const password = req.body.password;
-  const level = req.body.level;
-
+  // Récupération des champs.
+  const {email, name, password, level} = req.body;
+  
   bcrypt
     .hash(password, 12)
     .then((hashedPassword) => {

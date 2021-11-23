@@ -1,11 +1,10 @@
 {
-  "name": "MoonExpress",
+  "name": "moon-express",
   "version": "1.0.0",
   "description": "MoonExpress",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",

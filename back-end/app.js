@@ -1,5 +1,7 @@
 "use strict";
 
+require('dotenv').config();     // .env
+
 const express = require('express');
 const mongoose = require('mongoose');
 var hateoasLinker = require('express-hateoas-links');
@@ -55,11 +57,11 @@ app.use(function (err, req, res, next) {
 });
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 mongoose
-  .connect('mongodb://127.0.0.1:27017/moonExpress')
+  .connect(process.env.MONGODB_URL)
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
       console.log('Node.js est à l\'écoute sur le port %s ', PORT);
     });
   })
