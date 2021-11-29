@@ -7,9 +7,24 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
+
+
+/**
+ * Permet la connexion d'un utilisateur.
+ * @param {object} req 
+ * @param {object} res 
+ * @param {function} next 
+ */
 exports.login = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+
+  if(!email || !password){
+    const err = new Error("Formulaire invalide, champs manquant!");
+    err.code = "INVALID_LOGIN_FORM";
+    throw err;
+  }
+
 
   let loadedUser;
   User.findOne({email: email})
@@ -17,6 +32,7 @@ exports.login = (req, res, next) => {
     if (!user) {
       const error = new Error('Utilisateur non trouvée');
       error.statusCode = 404;
+      error.code= "INVALID_USER";
       throw error;
     }
     loadedUser = user;
@@ -27,6 +43,7 @@ exports.login = (req, res, next) => {
     if (!isEqual) {
       const error = new Error('Mauvais mot de passe !');
       error.statusCode = 401;
+      error.code = "INCORRECT_PASSWORD";
       throw error;
     }
     const token = jwt.sign(
@@ -46,18 +63,32 @@ exports.login = (req, res, next) => {
   });
 };
 
+
+
+/**
+ * Permet la création de compte.
+ * @param {object} req 
+ * @param {object} res 
+ * @param {function} next 
+ */
 exports.signup = (req, res, next) => {
   // Récupération des champs.
   const {email, name, password, level} = req.body;
+
+  if(!email || !name || !password || !level){
+    const err = new Error("Formulaire invalide, champs manquant!");
+    err.code = "INVALID_SIGNUP_FORM";
+    throw err;
+  }
   
   bcrypt
     .hash(password, 12)
     .then((hashedPassword) => {
       const user = new User({
-        email: email,
-        name: name,
+        email,
+        name,
         password: hashedPassword,
-        level: level
+        level
       });
       return user.save();
     })

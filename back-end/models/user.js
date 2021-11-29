@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 const userSchema = new Schema(
   {
     email: {
@@ -17,7 +18,8 @@ const userSchema = new Schema(
     },
     level: {
       type: Number,
-      required: true
+      required: true,
+      default : 1
     }
   },
   { timestamps: true }

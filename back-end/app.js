@@ -48,15 +48,20 @@ app.use(reservationRoutes);
 
 app.use(errorController.get404);
 
+
+
 // Gestion des erreurs
 // "Attrappe" les erreurs envoyé par "throw"
 app.use(function (err, req, res, next) {
   console.log('err', err);
   if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).json({ message: err.message, statusCode: err.statusCode });
+
+  // Envoie de l'information.
+  res.status(err.statusCode).json({ code: err.code, message: err.message, statusCode: err.statusCode });
 });
 
 
+// Connection base de données.
 const PORT = process.env.PORT || 3000;
 mongoose
   .connect(process.env.MONGODB_URL)
