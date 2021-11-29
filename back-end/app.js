@@ -1,5 +1,7 @@
 "use strict";
 
+require('dotenv').config();     // .env
+
 const express = require('express');
 const mongoose = require('mongoose');
 var hateoasLinker = require('express-hateoas-links');
@@ -46,20 +48,25 @@ app.use(reservationRoutes);
 
 app.use(errorController.get404);
 
+
+
 // Gestion des erreurs
 // "Attrappe" les erreurs envoyé par "throw"
 app.use(function (err, req, res, next) {
   console.log('err', err);
   if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).json({ message: err.message, statusCode: err.statusCode });
+
+  // Envoie de l'information.
+  res.status(err.statusCode).json({ code: err.code, message: err.message, statusCode: err.statusCode });
 });
 
 
-const PORT = 3000;
+// Connection base de données.
+const PORT = process.env.PORT || 3000;
 mongoose
-  .connect('mongodb://127.0.0.1:27017/moonExpress')
+  .connect(process.env.MONGODB_URL)
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
       console.log('Node.js est à l\'écoute sur le port %s ', PORT);
     });
   })
