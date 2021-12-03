@@ -6,13 +6,13 @@
       
       <div>
         <label for="email">Votre courriel:</label>
-        <input v-model="email"
+        <input v-model.trim="email"
         type="email" name="email" id="email" placeholder="nom@domain.com" />
       </div>
 
       <div>
           <label for="pwd">Mot de passe :</label>
-          <input v-model="pwd"
+          <input v-model.trim="pwd"
           type="password" name="pwd" id="pwd" placeholder="Ma clé secrète...">
       </div>
 
@@ -54,8 +54,14 @@ export default {
                 return response.json();
             })
             .then(body=>{
-                console.log('body', body);
-            });
+                // Enregistrer le token dans le localStorage.
+                localStorage.setItem("token", body.token);
+                // Envoyer vers l'acceuil.
+                this.$router.push({name: 'Home'});
+            })
+            .catch(err=> {
+                console.error(err);
+            })
 
         }
     }
