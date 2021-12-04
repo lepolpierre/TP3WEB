@@ -22,6 +22,7 @@ module.exports = (req, res, next) => {
   if (!decodedToken) {
     const error = new Error('Non authentifié.');
     error.statusCode = 401;
+    error.code ="NON_AUTHORISED_USER";
     throw error;
   }
   // Passe le token décodé dans la requête pour pouvoir l'utiliser ailleurs

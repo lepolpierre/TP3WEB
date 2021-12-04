@@ -42,7 +42,7 @@ exports.login = (req, res, next) => {
   .then(isEqual => {
     if (!isEqual) {
       const error = new Error('Mauvais mot de passe !');
-      error.statusCode = 401;
+      error.statusCode = 404;
       error.code = "INCORRECT_PASSWORD";
       throw error;
     }
