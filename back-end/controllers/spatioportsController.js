@@ -3,14 +3,15 @@
 const Spatioport = require('../models/spatioport');
 
 exports.getSpatioports = (req, res, next) => {
-  if (req.user.level !== 2) {
-    const error = new Error("Vous ne pouvez pas...");
-    error.statusCode = 401;
-    throw error;
-  }
+  // if (req.user.level !== 2) {
+  //   const error = new Error("Vous ne pouvez pas...");
+  //   error.statusCode = 401;
+  //   throw error;
+  // }
   
   Spatioport.find()
   .then(spatioports => {
+    console.log(spatioports[0].toJSON());
     res.json({
       spatioports: spatioports
     });
@@ -23,11 +24,11 @@ exports.getSpatioports = (req, res, next) => {
 exports.getSpatioport = (req, res, next) => {
   const SpatioportId = req.params.SpatioportId;
 
-  if (req.user.level !== 2) {
-    const error = new Error("Vous ne pouvez pas...");
-    error.statusCode = 401;
-    throw error;
-  }
+  // if (req.user.level !== 2) {
+  //   const error = new Error("Vous ne pouvez pas...");
+  //   error.statusCode = 401;
+  //   throw error;
+  // }
 
   Spatioport.findById(SpatioportId)
   .then(spatioport => {
@@ -70,6 +71,7 @@ exports.createSpatioport = (req, res, next) => {
 
 exports.deleteSpatioport = (req, res, next) => {
   console.log(req.user);
+  
   if (req.user.level !== 2) {
     const error = new Error("Vous ne pouvez pas supprimer");
     error.statusCode = 401;

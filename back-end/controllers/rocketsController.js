@@ -2,6 +2,8 @@
 
 const Rocket = require('../models/rocket');
 
+
+
 exports.getRockets = (req, res, next) => {
     Rocket.find()
     .then(rockets => {
