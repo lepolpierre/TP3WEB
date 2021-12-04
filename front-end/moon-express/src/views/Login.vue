@@ -3,7 +3,9 @@
     <h3>Connexion</h3>
 
     <form action="" method="POST" @submit.prevent="onSubmit">
-      
+    
+      <span class="erreur">{{erreur}}</span>
+
       <div>
         <label for="email">Votre courriel:</label>
         <input v-model.trim="email"
@@ -27,13 +29,26 @@ export default {
     name : 'Login',
     data(){
         return{
+            erreur:'',
             email : "",
             pwd: ""
         }
     },
     methods: {
+        validations(){
+            if(this.email.length <= 0 || this.pwd.length <= 0 ){
+                this.erreur = "Erreur, utilisateur non reconnu!";
+                return false;
+            }
+            else{
+                this.erreur = "";
+            }
+
+            return true;
+        },
         onSubmit(){
-            this.appelApi();
+            if(this.validations())
+                this.appelApi();
         },
         appelApi(){
 
@@ -50,12 +65,17 @@ export default {
                 },
                 body: JSON.stringify(user)
             })
-            .then(response=>{
-                return response.json();
+            .then(res=>{
+                if(res.status === 200)
+                    return res.json();
+                else{
+                    throw new Error("Erreur de connexion");
+                }
             })
             .then(body=>{
                 // Enregistrer le token dans le localStorage.
                 localStorage.setItem("token", body.token);
+
                 // Envoyer vers l'acceuil.
                 this.$router.push({name: 'Home'});
             })
@@ -69,22 +89,8 @@ export default {
 </script>
 
 <style scoped>
-form{
-    width: 60vw;
-    padding: 1%;
-    margin: 0 auto;
-    border-radius: 25px;
-    border: 1px solid black;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
+@import '../assets/form.css';
 
-.btn{
-    padding: 1%;
-    font-weight: bold;
-    border-radius: 5px;
-}
+
 </style>

@@ -36,7 +36,7 @@ exports.login = (req, res, next) => {
       throw error;
     }
     loadedUser = user;
-    console.log('loadedUser', loadedUser);
+    // console.log('loadedUser', loadedUser);
     return bcrypt.compare(password, user.password);
   })
   .then(isEqual => {
@@ -75,6 +75,8 @@ exports.signup = (req, res, next) => {
   // Récupération des champs.
   const {email, name, password, level} = req.body;
 
+
+  // Vérifier que les champs sont fournis.
   if(!email || !name || !password || !level){
     const err = new Error("Formulaire invalide, champs manquant!");
     err.code = "INVALID_SIGNUP_FORM";
@@ -93,7 +95,11 @@ exports.signup = (req, res, next) => {
       return user.save();
     })
     .then(result => {
-      res.status(201).json({message: "Utilisateur créé !", userId: result.id});
+      res.status(201).json(
+        {
+          message: "Utilisateur créé !",
+          userId: result.id
+        });
     })
     .catch(err => {
       next(err);
