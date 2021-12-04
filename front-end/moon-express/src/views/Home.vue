@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <research/>
+    <research @resultRecherche="ResultatRecherche"/>
 
     // ici on va ajouter le reste des components: Resultat de la recherche si yen a , et le paiement
     // cv etre des components separes aussi commme reseach, et on les manipule a fur et a mesure.
@@ -25,7 +25,9 @@ export default {
     }
   },
   methods:{
-    
+    ResultatRecherche(rockets){
+      console.log('hi from home', rockets);
+    }
   },
 
 }
