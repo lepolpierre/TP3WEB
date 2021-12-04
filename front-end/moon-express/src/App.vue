@@ -3,7 +3,11 @@
     <div id="nav">
       <router-link :to="{ name: 'Home' }">Home</router-link> |
       <router-link :to="{ name: 'Login' }">Login</router-link> |
-      <router-link :to="{ name: 'Signup'}" >Sign up</router-link>
+      <router-link :to="{ name: 'Signup'}" >Sign up</router-link> |
+
+            <!-- juste pour tester l'affiche du form => a mettre dans home -->
+      <router-link :to="{ name: 'Research'}" >Recherche</router-link>
+
     </div>
     <router-view />
   </div>
