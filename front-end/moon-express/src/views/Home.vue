@@ -1,43 +1,32 @@
 <template>
   <div class="home">
-    {{nom}}
+    <research/>
+
+    // ici on va ajouter le reste des components: Resultat de la recherche si yen a , et le paiement
+    // cv etre des components separes aussi commme reseach, et on les manipule a fur et a mesure.
+    // le parent reste toujours Home.vue, qui contient le tout, donc les enfants devront gerer les emits.. BEURKKK
   </div>
 </template>
 
-// ajouter vue research
+
 
 <script>
 // @ is an alias to /src
+import Research from '@/components/Research.vue'
 
 export default {
   name: 'Home',
   components: {
+    Research
   },
   data(){
     return{
-      nomSpatios : []
+      
     }
   },
   methods:{
-    recupNomSpatio(){
-
-      fetch('http://localhost:3000/spatioport')
-      .then(res=>{
-        if(res.status === 200){
-          return res.json();
-        }else{
-          throw new Error("Erreur lors de la récupération des Spatioport");
-        }
-      })
-      .then(data=>{
-        this.nomSpatios = data.spatioports.map(r => r.city);
-        console.log('this.nomSpatios', ...this.nomSpatios);
-      })
-    }
+    
   },
 
-  created(){
-    this.recupNomSpatio();
-  }
 }
 </script>

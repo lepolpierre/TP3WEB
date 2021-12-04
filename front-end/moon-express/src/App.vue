@@ -1,17 +1,24 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'Login' }">Login</router-link> |
-      <router-link :to="{ name: 'Signup'}" >Sign up</router-link> |
-
-            <!-- juste pour tester l'affiche du form => a mettre dans home -->
-      <router-link :to="{ name: 'Research'}" >Recherche</router-link>
-
-    </div>
+    <nav-bar/>
     <router-view />
   </div>
 </template>
+
+
+<script>
+import NavBar from "@/components/NavBar.vue";
+
+export default {
+  name: "App",
+  components: {
+    NavBar
+  },
+  data() {
+    return {};
+  },
+};
+</script>
 
 <style>
 #app {
@@ -37,6 +44,6 @@
 }
 
 #nav a.router-link-exact-active {
-  color: rgba(200,50,50,0.5);
+  color: rgba(200, 50, 50, 0.5);
 }
 </style>

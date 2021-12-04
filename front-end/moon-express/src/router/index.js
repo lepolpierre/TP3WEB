@@ -6,8 +6,7 @@ import Home from '../views/Home.vue';
 import Login from '@/views/Login.vue';
 import Signup from '@/views/SignUp.vue';
 
-// Research 
-import Research from '@/views/Research.vue';
+
 
 import NotFound from '@/views/NotFound.vue';
 
@@ -27,11 +26,6 @@ const routes = [
     path: '/auth/signup',
     name : 'Signup',
     component: Signup
-  },
-  {
-    path: '/research',
-    name : 'Research',
-    component: Research
   },
   {
     path: '/:notFound(.*)',
