@@ -4,6 +4,8 @@
   </div>
 </template>
 
+// ajouter vue research
+
 <script>
 // @ is an alias to /src
 
