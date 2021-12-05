@@ -14,4 +14,5 @@ const spatioportSchema = new Schema(
   }
 );
 
+
 module.exports = mongoose.model('Spatioport', spatioportSchema);
