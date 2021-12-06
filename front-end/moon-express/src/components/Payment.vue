@@ -1,5 +1,5 @@
 <template>
-  <div class="payment" v-if="fusee.name != null">
+  <div class="paymentResult" v-if="fusee.name != null">
   
     <div >
        {{fusee.name}}
@@ -25,4 +25,5 @@ export default {
 
 <style scoped>
 @import "../assets/form.css";
+@import "../assets/components.css";
 </style>

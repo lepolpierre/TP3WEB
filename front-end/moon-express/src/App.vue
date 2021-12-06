@@ -36,7 +36,7 @@ export default {
 
 #nav a {
   background-color: rgba(100, 200, 100, 0.5);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 1%;
   text-decoration: none;
   font-weight: bold;

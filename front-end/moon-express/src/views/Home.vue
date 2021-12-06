@@ -2,25 +2,27 @@
   <div class="home">
     <research @resultRecherche="ResultatRecherche" />
 
-    <div v-if="lstResultats.length > 0">
-      <div style="background-color: green; margin: 5%">
+    <div class="containerResultPayment" v-if="lstResultats.length > 0">
+    
+      <div class="results" >
+    
         <div v-for="(result, index) in lstResultats" :key="index">
           <resultats
             :results="result"
-            @selectedFusee="SelectedFusee"
-          ></resultats>
+            @selectedFusee="SelectedFusee">
+          </resultats>    
         </div>
+     
       </div>
-      <!-- quand on click sur le btn selectionner recupere les infos de la fusee -->
-      <div v-if="selectedFusee">
-        <payment :fusee="selectedFusee"></payment>
-      </div>
-    </div>
-    <!-- <h2 v-show="rechercheActive" v-else>Aucun résultat trouvé :/</h2> -->
 
-    <!-- ici on va ajouter le reste des components: Resultat de la recherche si yen a , et le paiement
-    // cv etre des components separes aussi commme reseach, et on les manipule a fur et a mesure.
-    // le parent reste toujours Home.vue, qui contient le tout, donc les enfants devront gerer les emits.. BEURKKK -->
+
+      <div class="payment" v-if="selectedFusee != undefined">
+     
+          <payment :fusee="selectedFusee"></payment>
+
+      </div>
+    
+    </div>
   </div>
 </template>
 
@@ -50,6 +52,8 @@ export default {
     ResultatRecherche(rockets) {
       this.lstResultats = rockets;
       console.log('rockets', rockets);
+      console.log('ahhhhhhhh', selectedFusee);
+      
     },
     SelectedFusee(fusee) {
       this.selectedFusee = fusee;
@@ -57,3 +61,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@import "../assets/components.css";
+</style>

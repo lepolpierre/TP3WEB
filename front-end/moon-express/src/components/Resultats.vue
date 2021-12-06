@@ -1,7 +1,7 @@
 <template>
   <div class="resultat">
     <!--mettre la date du vol -->
-    <div style="margin: 0.2%; padding:0.2%; background-color: white;">
+    <div class="result" >
 
         <!-- option 1 =>  <img style="width:5%;height:5%;" :src="require('../assets/images' + results.image)" alt="">-->
         <!-- option 1 =>  <img style="width:5%;height:5%;" :src="'../assets/images/'+results.image" alt="">-->
@@ -44,4 +44,6 @@ export default {
 
 <style scoped>
 @import "../assets/form.css";
+
+@import "../assets/components.css";
 </style>
