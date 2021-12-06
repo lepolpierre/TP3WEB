@@ -17,6 +17,9 @@ exports.createSearch = (req, res, next) => {
   let spatioDep;
   let spatioArrival;
 
+  // Rockets de la recherche
+  let recherche;
+
   // Récupération spatioport Depat.
   SpatioPort.find({city: spatioportDepartureId})
     .then(s => {
@@ -34,17 +37,19 @@ exports.createSearch = (req, res, next) => {
         Rocket.find()
         .then(rockets => {
 
-          // rockets = rockets.filter(r => {
-          //   return r.spatioportDepartureId.toString() === spatioDep._id.toString()
-          //   && r.spatioportArrivalId.toString() === spatioArrival._id.toString()
-      
-          // } );
+          rockets = rockets.filter(r => {
+            return r.spatioportDepartureId.toString() === spatioDep._id.toString()
+            && r.spatioportArrivalId.toString() === spatioArrival._id.toString()
+            && r.nbPlaceRemaining >= nbPerson;
+          } );
 
-          console.log(rockets.length);
+          return rockets;
 
-          // res.status(200).json({result : rockets});
-
-      });
+        })
+        .then(result=>{
+          console.log(result.length);
+          res.status(200).json({result});
+        });
       });
     })
     .catch(err=> next(err));
