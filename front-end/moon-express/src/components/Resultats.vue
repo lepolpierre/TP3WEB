@@ -4,13 +4,16 @@
     <div class="result" >
 
         <!-- option 1 =>  <img style="width:5%;height:5%;" :src="require('../assets/images' + results.image)" alt="">-->
-        <!-- option 1 =>  <img style="width:5%;height:5%;" :src="'../assets/images/'+results.image" alt="">-->
-       {{results.name}}
-       <!-- formater la date -->
-       date : {{results.date}}
-       place restante : {{results.nbPlaceRemaining}}
-       prix : {{results.price}} $
-       <button v-on:click="choixDeLaFusee"> Selectionner</button>
+      <img  src="../assets/images/4.jpg" alt="image de rocket">
+       
+       <div class="contenu">
+        <div><strong>Nom :</strong> {{results.name}}</div>
+        <div> <strong>date :</strong> {{results.date.split('T')[0]}}</div>
+        <div> <strong>Place(s) restante(s) :</strong> {{results.nbPlaceRemaining}}</div>
+        <div> <strong>Prix :</strong> {{results.price}} $</div>
+       </div>
+
+       <button class="selectBtn" v-on:click="choixDeLaFusee"> Selectionner</button>
     </div>
 
     
@@ -30,20 +33,43 @@ export default {
   },
   methods:{
     choixDeLaFusee(){
-        console.log("click choix : ",this.results)
+        // console.log("click choix : ",this.results)
         this.$emit("selectedFusee", this.results)
     }
   },
 
   created(){
-    this.image = `/assets/images/${this.results.image}`
-    console.log(this.image)
+    this.image = `../assets/images/1.jpg`
+    console.log("image",this.image)
   }
 };
 </script>
 
 <style scoped>
 @import "../assets/form.css";
-
 @import "../assets/components.css";
+
+
+.result{
+  display: flex;
+}
+
+.contenu{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.selectBtn ,img{
+  align-self: center;
+}
+
+img{
+  width: 10%;
+  border-radius: 3%;
+  padding: 1%;
+}
+
 </style>
