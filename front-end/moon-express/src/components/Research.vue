@@ -103,6 +103,7 @@ export default {
     },
     onSubmit() {
       console.log("this.validations()", this.validations());
+      console.log("boop")
       this.appelApi();
     },
     appelApi() {
