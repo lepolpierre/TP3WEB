@@ -1,14 +1,12 @@
 <template>
   <div class="paymentResult" v-if="fusee.name != null">
   
-    <div >
-       {{fusee.name}}
-       <!-- formater la date -->
-       date : {{fusee.date}}
-       place restante : {{fusee.nbPlaceRemaining}}
-       prix : {{fusee.price}} $
-       <!-- ajouter nombre de personnes choisie dans le form --> 
-       <button > Payer</button>
+    <div class="cardPayment">
+      <div>{{fusee.name}}</div>
+      <div class="row">date : {{fusee.date.split("T")[0]}}</div>
+      <div class="row">place restante : <div>{{fusee.nbPlaceRemaining}}</div></div>
+      <div class="row">prix : <div>{{fusee.price}} $</div></div>
+      <div><button > Payer</button></div>
     </div>
 
   </div>

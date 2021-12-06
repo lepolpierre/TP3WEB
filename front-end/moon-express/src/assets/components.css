@@ -1,17 +1,21 @@
 .result{
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(to bottom, hsl(120, 30%,97%), hsl(120, 50%, 90%));
     margin: 1%;
     padding: 1%;
     border-radius: 5px;
+    justify-content: space-between  ;
 }
 
 .results{
     display: flex;
      background-color: white;
      margin: 1%;
-     margin-top: 3%;
+     padding: 1%;
      border-radius: 5px;
      width: 60%;
+     justify-content: center;
 }
 
 .containerResultPayment{
@@ -25,16 +29,29 @@
     background-color: white;
     border-radius: 5px;
     background: linear-gradient(to bottom, hsl(120, 30%,97%), hsl(120, 50%, 90%));
-    margin: 1%;
-    padding: 1%;
+    padding:10%;
+    padding-top:1%;
     
 }
 .payment{
     display: flex;
     background-color: white;
     border-radius: 5px;
-    width: 30%;
+    width: 35%;
     margin: 1%;
     padding: 1%;
+    height: 200px;;
+    justify-content: center;
     
+}
+
+.cardPayment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
 }

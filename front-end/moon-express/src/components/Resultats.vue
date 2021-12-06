@@ -2,15 +2,19 @@
   <div class="resultat">
     <!--mettre la date du vol -->
     <div class="result" >
-
+      <div>{{results.name}}</div>
+      <div>
         <!-- option 1 =>  <img style="width:5%;height:5%;" :src="require('../assets/images' + results.image)" alt="">-->
         <!-- option 1 =>  <img style="width:5%;height:5%;" :src="'../assets/images/'+results.image" alt="">-->
-       {{results.name}}
-       <!-- formater la date -->
-       date : {{results.date}}
-       place restante : {{results.nbPlaceRemaining}}
-       prix : {{results.price}} $
-       <button v-on:click="choixDeLaFusee"> Selectionner</button>
+      </div>
+       
+       <div class="rowContainer">
+          <div id="row">date : {{results.date.split("T")[0]}}</div>
+          <div id="row">place restante : {{results.nbPlaceRemaining}}</div>
+          <div id="row">prix : {{results.price}} $</div>
+       </div>
+
+       <div ><button v-on:click="choixDeLaFusee"> Selectionner</button></div>
     </div>
 
     
