@@ -1,6 +1,5 @@
 "use strict";
 
-const reservation = require('../models/reservation');
 const Reservation = require('../models/reservation');
 
 exports.getReservations = (req, res, next) => {
@@ -45,7 +44,7 @@ exports.createReservation = (req, res, next) => {
         userId: req.user.userId
     });
 
-    reservation.save()
+    Reservation.save()
         .then(result => {
             res.status(200).json({
                 message: "Fusee reserver",
