@@ -7,18 +7,11 @@ const SpatioPort = require('../models/spatioport');
 
 exports.createSearch = (req, res, next) => {
   // console.log(req.params);
-  const {
-    date,
-    nbPerson,
-    spatioportArrivalId,
-    spatioportDepartureId
-  } = req.params;
+  const {date,nbPerson,spatioportArrivalId,spatioportDepartureId} = req.params;
   // On récupère les noms des spacioport du formulaire, afin de faciliter la lecture, remplacer les noms variables 
   let spatioDep;
   let spatioArrival;
 
-  // Rockets de la recherche
-  let recherche;
 
   // Récupération spatioport Depat.
   SpatioPort.find({city: spatioportDepartureId})
@@ -34,21 +27,22 @@ exports.createSearch = (req, res, next) => {
       .then(()=>{
         // Ici on a obtenu les spatioport depart et arrivee..
         // Recherche
-        Rocket.find()
-        .then(rockets => {
-
-          rockets = rockets.filter(r => {
-            return r.spatioportDepartureId.toString() === spatioDep._id.toString()
-            && r.spatioportArrivalId.toString() === spatioArrival._id.toString()
-            && r.nbPlaceRemaining >= nbPerson;
-          } );
-
-          return rockets;
-
+        Rocket.find({
+          date : new Date(date),
+          nbPlaceRemaining : {
+            $gte: nbPerson
+          },
+          spatioportDepartureId : spatioDep._id,
+          spatioportArrivalId : spatioArrival._id
         })
-        .then(result=>{
-          console.log(result.length);
-          res.status(200).json({result});
+        .then(rockets => {
+           if(!rockets){
+             const err = new Error("Aucun résultat!");
+             err.statusCode = 404;
+             err.code = "ROCKETS_EMPTY";
+             throw err;
+           }
+           res.status(200).json({result: rockets});
         });
       });
     })
