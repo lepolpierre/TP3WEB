@@ -4,7 +4,7 @@
     <div class="result" >
 
         <!-- option 1 =>  <img style="width:5%;height:5%;" :src="require('../assets/images' + results.image)" alt="">-->
-      <img  src="../assets/images/4.jpg" alt="image de rocket">
+      <img src="image" alt="image de rocket">
        
        <div class="contenu">
         <div><strong>Nom :</strong> {{results.name}}</div>
@@ -24,7 +24,9 @@
 export default {
   name: "resultat",
   props:{
-      results: {}
+      results: {
+        type: Object
+      }
   },
   data(){
     return {
@@ -39,6 +41,7 @@ export default {
   },
 
   created(){
+    console.log('this.results', this.results);
     this.image = `../assets/images/1.jpg`
     console.log("image",this.image)
   }
