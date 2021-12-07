@@ -62,7 +62,7 @@ export default {
   methods: {
     // Récupérer les noms des spatioports afin que l'utilisateur puisse en choisir.
     recupNomSpatio() {
-      fetch("http://localhost:3000/spatioport")
+      fetch("https://tp4hebergement.herokuapp.com/spatioport")
         .then((res) => {
           if (res.status === 200) {
             return res.json();
@@ -109,7 +109,7 @@ export default {
     },
     appelApi() {
 
-      let url = `http://localhost:3000/search/${this.date}/${this.nbPpl}/${this.depart}/${this.destination}`;
+      let url = `https://tp4hebergement.herokuapp.com/search/${this.date}/${this.nbPpl}/${this.depart}/${this.destination}`;
 
       fetch(url)
         .then((res) => {

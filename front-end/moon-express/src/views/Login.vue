@@ -56,7 +56,7 @@ export default {
                 email : this.email,
                 password: this.pwd
             }
-            let url = "http://localhost:3000/auth/login"
+            let url = "https://tp4hebergement.herokuapp.com/auth/login"
 
             fetch(url, {
                 method: 'POST',

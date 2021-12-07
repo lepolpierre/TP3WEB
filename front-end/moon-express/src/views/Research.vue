@@ -77,7 +77,7 @@ export default {
                 destination: this.destination
             }
             // a declarer dans le router index ? 
-            let url = "http://localhost:3000/research"
+            let url = "https://tp4hebergement.herokuapp.com/research"
 
             fetch(url, {
                 method: 'POST',

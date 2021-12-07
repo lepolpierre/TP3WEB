@@ -73,7 +73,7 @@ export default {
                 level: this.level
             }
 
-            fetch('http://localhost:3000/auth/signup', {
+            fetch('https://tp4hebergement.herokuapp.com/auth/signup', {
                 method : 'POST',
                 headers: {
                     'Content-Type': 'application/json'
