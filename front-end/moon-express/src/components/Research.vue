@@ -88,7 +88,8 @@ export default {
 
       
       // Validations sur la place de depart et arrivée.
-      if(this.depart === this.destination){
+
+      if(this.depart === this.destination && this.depart.length > 0 && this.destination.length > 0){
         this.erreurDepDest= "La destination doit être différente de l'emplacement de départ!";
         valide =false;
 
