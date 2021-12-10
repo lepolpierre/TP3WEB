@@ -8,7 +8,7 @@
        place restante : {{fusee.nbPlaceRemaining}}
        prix : {{fusee.price}} $
        <!-- ajouter nombre de personnes choisie dans le form --> 
-       <button > Payer</button>
+       <button @click="effectuerReservation" > Payer</button>
     </div>
 
   </div>
@@ -18,7 +18,21 @@
 export default {
   name: "payment",
   props:{
-    fusee: {}
+    fusee:{},
+    nbPerson:{
+      type: Number,
+      required: true
+    }
+  },
+  methods:{
+    effectuerReservation(){
+      fetch(`https://tp4hebergement.herokuapp.com/`)
+    }
+  },
+
+  created(){
+    console.log('this.fusee', this.fusee._id);
+    console.log('this.nbPerson', this.nbPerson);
   }
 };
 </script>

@@ -18,7 +18,7 @@
 
       <div class="payment" v-if="selectedFusee != undefined">
      
-          <payment :fusee="selectedFusee"></payment>
+          <payment :fusee="selectedFusee" :nbPerson="nbPerson"></payment>
 
       </div>
     
@@ -46,18 +46,19 @@ export default {
       rechercheActive: false,
       lstResultats: [],
       selectedFusee: {},
+      nbPerson : 0
     };
   },
   methods: {
-    ResultatRecherche(rockets) {
+    ResultatRecherche(rockets, nbPpl) {
       this.lstResultats = rockets;
-      console.log('rockets', rockets);
-      console.log('ahhhhhhhh', selectedFusee);
-      
+      this.nbPerson = nbPpl;
     },
     SelectedFusee(fusee) {
       this.selectedFusee = fusee;
     },
+
+
   },
 };
 </script>

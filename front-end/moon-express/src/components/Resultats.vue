@@ -41,6 +41,7 @@ export default {
   },
 
   created(){
+    // J'arrive pas bizzarement à afficher l'image, si on tape en "hard-code" le src de l'image ca fonctionne, mais pas en étant une variable.
     console.log('this.results', this.results);
     this.image = `../assets/images/1.jpg`
     console.log("image",this.image)

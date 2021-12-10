@@ -119,7 +119,7 @@ export default {
           }
         })
         .then(data=>{
-            this.$emit('resultRecherche', data.result);
+            this.$emit('resultRecherche', data.result, this.nbPpl);
         })
         .catch((err) => {
           console.error(err);
